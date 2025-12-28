@@ -3,6 +3,82 @@
     position: fixed;
     top: 84px;
     right: 18px;
+    z-index: 1001;
+    background: var(--gold-primary);
+    color: #23232b;
+    border: none;
+    border-radius: 6px;
+    font-size: 2rem;
+    padding: 0.2rem 0.8rem 0.3rem 0.8rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.mobile-bar-toggle:active, .mobile-bar-toggle:focus {
+    background: #fffbe6;
+    color: var(--gold-dark);
+}
+@media (max-width: 900px) {
+    .mobile-bar-toggle {
+        display: block;
+    }
+    .nav-links-mobile-bar {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 120px;
+        left: 0;
+        width: 100vw;
+        background: rgba(35,35,43,0.97);
+        border-bottom: 1.5px solid rgba(255, 215, 0, 0.25);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .nav-links-mobile-bar.active {
+        display: flex;
+    }
+}
+.nav-links-mobile-bar {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0 0.5rem;
+    background: rgba(35,35,43,0.92);
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100vw;
+    z-index: 999;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1.5px solid rgba(255, 215, 0, 0.25);
+}
+.nav-links-mobile-bar li {
+    flex: 1;
+    text-align: center;
+}
+    .nav-links {
+        display: none !important;
+    }
+    .menu-toggle {
+        display: flex !important;
+    }
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s, background 0.2s;
+}
+.nav-links-mobile-bar a:hover, .nav-links-mobile-bar a:focus {
+    color: #fff;
+    background: rgba(255,215,0,0.08);
+}
+
+@media (max-width: 900px) {
+    .nav-links-mobile-bar {
+        display: flex;
+    }
+}
+@media (max-width: 600px) {
+    .contact-info {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
@@ -27,7 +103,7 @@
         margin-bottom: 0.2rem;
         word-break: break-all;
     }
-
+}
 .nav-logo-mobile {
     display: none;
 }
@@ -124,7 +200,7 @@ body {
 
 @media (max-width: 900px) {
     body {
-        padding-top: 64px !important;
+        padding-top: 64px;
     }
 }
 
