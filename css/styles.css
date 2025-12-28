@@ -57,16 +57,7 @@
     flex: 1;
     text-align: center;
 }
-    .nav-links {
-        display: none !important;
-    }
-    .menu-toggle {
-        display: flex !important;
-    }
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: color 0.2s, background 0.2s;
-}
+
 .nav-links-mobile-bar a:hover, .nav-links-mobile-bar a:focus {
     color: #fff;
     background: rgba(255,215,0,0.08);
