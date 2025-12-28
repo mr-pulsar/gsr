@@ -86,9 +86,22 @@
     .contact-item h3 {
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
-        color: #181824;
+        color: var(--gold-primary);
         font-weight: 700;
         letter-spacing: 1px;
+        background: #181824;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        display: inline-block;
+        margin-top: 0.2rem;
+    }
+    .contact h2 {
+        color: var(--gold-primary);
+        background: #181824;
+        padding: 0.7rem 1.2rem;
+        border-radius: 10px;
+        display: inline-block;
+        margin-bottom: 1.2rem;
     }
     .contact-item p {
         font-size: 1rem;
