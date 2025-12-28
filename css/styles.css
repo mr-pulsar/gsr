@@ -1,5 +1,5 @@
 .mobile-bar-toggle {
-    display: none;
+    display: none !important;
     position: fixed;
     top: 84px;
     right: 18px;
@@ -57,12 +57,12 @@
     flex: 1;
     text-align: center;
 }
-.nav-links-mobile-bar a {
-    display: block;
-    color: var(--gold-primary);
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 0.8rem 0.2rem;
+    .nav-links {
+        display: none !important;
+    }
+    .menu-toggle {
+        display: flex !important;
+    }
     text-decoration: none;
     letter-spacing: 1px;
     transition: color 0.2s, background 0.2s;
@@ -1214,15 +1214,56 @@ footer {
     }
 
     .nav-links {
-        display: flex;
+        display: none !important;
+    }
+    .nav-links.mobile-menu,
+    .nav-links.mobile-menu.active {
+        display: flex !important;
         flex-direction: column;
-        gap: 0;
-        flex: none;
+        position: fixed;
+        top: 80px;
+        left: 0;
         width: 100vw;
-        background: #fff;
-        position: static;
-        box-shadow: none;
-        padding: 0.5rem 0;
+        background: #23232b;
+        z-index: 9999;
+        padding: 2rem 0 1rem 0;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        border-bottom: 1.5px solid rgba(255, 215, 0, 0.15);
+    }
+    .nav-links.mobile-menu li,
+    .nav-links.mobile-menu.active li {
+        width: 100%;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    .nav-links.mobile-menu a,
+    .nav-links.mobile-menu.active a {
+        color: var(--gold-primary);
+        font-size: 1.2rem;
+        padding: 1rem 0;
+        width: 100%;
+        display: block;
+        border-radius: 0;
+        background: none;
+    }
+    .nav-links.mobile-menu a:hover,
+    .nav-links.mobile-menu.active a:hover {
+        color: #fff;
+        background: rgba(255,215,0,0.08);
+    }
+    .menu-toggle {
+        display: flex !important;
+        position: absolute;
+        right: 1.2rem;
+        top: 1.2rem;
+        z-index: 10001;
+    }
+    header {
+        height: 64px;
+        min-height: 64px;
+    }
+    body {
+        padding-top: 64px;
     }
 
     .nav-links li {
@@ -1747,7 +1788,7 @@ footer {
 }
 
 .filters {
-    display: flex;
+    display: none;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 3rem;
