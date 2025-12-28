@@ -76,11 +76,11 @@
         align-items: stretch;
     }
     .contact-item {
-        background: linear-gradient(135deg, #23232b 0%, #2a2a48 100%);
+        background: linear-gradient(135deg, #181824 0%, #23232b 100%);
         border-radius: 12px;
         padding: 1.2rem 1rem;
         color: var(--gold-primary);
-        box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+        box-shadow: 0 2px 16px rgba(0,0,0,0.28);
         text-align: left;
     }
     .contact-item h3 {
@@ -90,7 +90,7 @@
     }
     .contact-item p {
         font-size: 1rem;
-        color: var(--text-lighter);
+        color: #e0e0e0;
         margin-bottom: 0.2rem;
         word-break: break-all;
     }
