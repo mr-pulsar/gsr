@@ -1,3 +1,17 @@
+// Mobile bar toggle for nav-links-mobile-bar
+const mobileBarToggle = document.querySelector('.mobile-bar-toggle');
+const navLinksMobileBar = document.querySelector('.nav-links-mobile-bar');
+if (mobileBarToggle && navLinksMobileBar) {
+    mobileBarToggle.addEventListener('click', () => {
+        navLinksMobileBar.classList.toggle('active');
+    });
+    // Optional: Hide menu when a link is clicked
+    navLinksMobileBar.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinksMobileBar.classList.remove('active');
+        });
+    });
+}
 // Loading Screen
 window.addEventListener('load', () => {
     setTimeout(() => {
