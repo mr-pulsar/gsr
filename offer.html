@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offers - GSR Graphics</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Luxury Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="logo-animation">
+                <h1>GSR</h1>
+                <div class="logo-shine"></div>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Crafting Luxury</p>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>GSR Graphics</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="offer.html">Offers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="offer-hero">
+        <div class="container">
+            <h1>Exclusive Offers & Promotions</h1>
+            <p class="lead">Premium Deals on Our Luxury Collection</p>
+        </div>
+    </section>
+
+    <section class="offers-carousel-section">
+        <div class="container">
+            <h2>Limited Time Offers</h2>
+            
+            <div class="offers-carousel" id="offers-carousel-container">
+                <div class="offer-card active">
+                    <div class="offer-badge">20% OFF</div>
+                    <div class="offer-image">
+                        <img src="https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mahogany Gold Frame">
+                    </div>
+                    <div class="offer-details">
+                        <h3>Mahogany Gold Frame</h3>
+                        <p class="offer-description">Premium handcrafted wooden frame with fine gold detailing.</p>
+                        <div class="offer-pricing">
+                            <span class="original-price">₹12,499</span>
+                            <span class="discount-price">₹9,999</span>
+                        </div>
+                        <p class="offer-validity">Valid till Dec 31, 2025</p>
+                        <button class="offer-btn">Shop Now</button>
+                    </div>
+                </div>
+
+                <div class="offer-card">
+                    <div class="offer-badge">30% OFF</div>
+                    <div class="offer-image">
+                        <img src="https://images.pexels.com/photos/3625517/pexels-photo-3625517.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Crystal Platinum Frame">
+                    </div>
+                    <div class="offer-details">
+                        <h3>Crystal Platinum Frame</h3>
+                        <p class="offer-description">Elegant crystal glass frame with platinum finish detailing.</p>
+                        <div class="offer-pricing">
+                            <span class="original-price">₹16,799</span>
+                            <span class="discount-price">₹11,759</span>
+                        </div>
+                        <p class="offer-validity">Valid till Dec 31, 2025</p>
+                        <button class="offer-btn">Shop Now</button>
+                    </div>
+                </div>
+
+                <div class="offer-card">
+                    <div class="offer-badge">25% OFF</div>
+                    <div class="offer-image">
+                        <img src="https://images.pexels.com/photos/3945695/pexels-photo-3945695.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Royal Heritage Frame">
+                    </div>
+                    <div class="offer-details">
+                        <h3>Royal Heritage Frame</h3>
+                        <p class="offer-description">Ornate heritage frame with exquisite embellishments.</p>
+                        <div class="offer-pricing">
+                            <span class="original-price">₹14,999</span>
+                            <span class="discount-price">₹11,249</span>
+                        </div>
+                        <p class="offer-validity">Valid till Dec 31, 2025</p>
+                        <button class="offer-btn">Shop Now</button>
+                    </div>
+                </div>
+
+                <div class="offer-card">
+                    <div class="offer-badge">15% OFF</div>
+                    <div class="offer-image">
+                        <img src="https://images.pexels.com/photos/4553394/pexels-photo-4553394.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Modern Minimalist Frame">
+                    </div>
+                    <div class="offer-details">
+                        <h3>Modern Minimalist Frame</h3>
+                        <p class="offer-description">Contemporary sleek frame with minimalist aesthetic design.</p>
+                        <div class="offer-pricing">
+                            <span class="original-price">₹10,899</span>
+                            <span class="discount-price">₹9,264</span>
+                        </div>
+                        <p class="offer-validity">Valid till Dec 31, 2025</p>
+                        <button class="offer-btn">Shop Now</button>
+                    </div>
+                </div>
+
+                <button class="carousel-control prev" onclick="changeOfferSlide(-1)">❮</button>
+                <button class="carousel-control next" onclick="changeOfferSlide(1)">❯</button>
+                
+                <div class="carousel-dots" id="offer-dots">
+                    <span class="dot active" onclick="currentOfferSlide(1)"></span>
+                    <span class="dot" onclick="currentOfferSlide(2)"></span>
+                    <span class="dot" onclick="currentOfferSlide(3)"></span>
+                    <span class="dot" onclick="currentOfferSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="offer-stats">
+        <div class="container">
+            <h2>Why Choose GSR Graphics</h2>
+            
+            <div class="stats-carousel" id="stats-carousel-container">
+                <div class="stat-card active">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Satisfied Customers</div>
+                    <p class="stat-description">Join our growing family of happy clients worldwide.</p>
+                    <div class="stat-image">
+                        <img src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Satisfied Customers">
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Premium Clients</div>
+                    <p class="stat-description">Trusted by premium brands and luxury retailers.</p>
+                    <div class="stat-image">
+                        <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Premium Clients">
+                    </div>
+                </div>
+
+                <button class="carousel-control prev" onclick="changeStatsSlide(-1)">❮</button>
+                <button class="carousel-control next" onclick="changeStatsSlide(1)">❯</button>
+
+                <div class="carousel-dots" id="stats-dots">
+                    <span class="dot active" onclick="currentStatsSlide(1)"></span>
+                    <span class="dot" onclick="currentStatsSlide(2)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Action Button -->
+    <div class="fab">
+        <span>✉</span>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GSR Graphics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        let offerSlideIndex = 1;
+        let offerAutoSlideTimer;
+
+        function changeOfferSlide(n) {
+            clearTimeout(offerAutoSlideTimer);
+            showOfferSlide(offerSlideIndex += n);
+            offerAutoSlideTimer = setTimeout(() => changeOfferSlide(1), 5000);
+        }
+
+        function currentOfferSlide(n) {
+            clearTimeout(offerAutoSlideTimer);
+            showOfferSlide(offerSlideIndex = n);
+            offerAutoSlideTimer = setTimeout(() => changeOfferSlide(1), 5000);
+        }
+
+        function showOfferSlide(n) {
+            let slides = document.querySelectorAll('.offers-carousel .offer-card');
+            let dots = document.querySelectorAll('#offer-dots .dot');
+            
+            if (n > slides.length) {
+                offerSlideIndex = 1;
+            }
+            if (n < 1) {
+                offerSlideIndex = slides.length;
+            }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[offerSlideIndex - 1].classList.add('active');
+            dots[offerSlideIndex - 1].classList.add('active');
+        }
+
+        // Auto-advance offer carousel
+        offerAutoSlideTimer = setTimeout(() => changeOfferSlide(1), 5000);
+
+        // Stats carousel
+        let statsSlideIndex = 1;
+        let statsAutoSlideTimer;
+
+        function changeStatsSlide(n) {
+            clearTimeout(statsAutoSlideTimer);
+            showStatsSlide(statsSlideIndex += n);
+            statsAutoSlideTimer = setTimeout(() => changeStatsSlide(1), 6000);
+        }
+
+        function currentStatsSlide(n) {
+            clearTimeout(statsAutoSlideTimer);
+            showStatsSlide(statsSlideIndex = n);
+            statsAutoSlideTimer = setTimeout(() => changeStatsSlide(1), 6000);
+        }
+
+        function showStatsSlide(n) {
+            let slides = document.querySelectorAll('.stats-carousel .stat-card');
+            let dots = document.querySelectorAll('#stats-dots .dot');
+            
+            if (n > slides.length) {
+                statsSlideIndex = 1;
+            }
+            if (n < 1) {
+                statsSlideIndex = slides.length;
+            }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[statsSlideIndex - 1].classList.add('active');
+            dots[statsSlideIndex - 1].classList.add('active');
+        }
+
+        // Auto-advance stats carousel
+        statsAutoSlideTimer = setTimeout(() => changeStatsSlide(1), 6000);
+    </script>
+</body>
+</html>

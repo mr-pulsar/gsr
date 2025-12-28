@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSR Graphics - Luxury Photo Frames & Gifts</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Luxury Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="logo-animation">
+                <h1>GSR</h1>
+                <div class="logo-shine"></div>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Crafting Luxury</p>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>GSR Graphics</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Luxury Photo Frames & Exquisite Gifts</h2>
+            <p>A Place Where You Buy Emotions.</p>
+            <a href="products.html" class="cta-button">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Satisfied Customers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Premium Clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Products Delivered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About GSR Graphics</h2>
+            <p>At GSR Graphics, we specialize in creating timeless pieces that capture life's precious moments. Our luxury photo frames and gifts are crafted with meticulous attention to detail, using the finest materials to ensure they stand the test of time.</p>
+            <div class="features">
+                <div class="feature">
+                    <h3>Premium Quality</h3>
+                    <p>Hand-selected materials for unparalleled craftsmanship.</p>
+                </div>
+                <div class="feature">
+                    <h3>Custom Designs</h3>
+                    <p>Tailored to your unique style and preferences.</p>
+                </div>
+                <div class="feature">
+                    <h3>Timeless Elegance</h3>
+                    <p>Classic designs that never go out of fashion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Luxury Collection</h2>
+            <div class="product-carousel" id="product-carousel-container">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/3962669/pexels-photo-3962669.jpeg?w=400&h=320&fit=crop" alt="Luxury Wooden Frame">
+                    </div>
+                    <h3>Mahogany Gold Frame</h3>
+                    <p>Premium handcrafted wooden frame with fine gold detailing.</p>
+                    <span class="price">₹12,499</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/3625517/pexels-photo-3625517.jpeg?w=400&h=320&fit=crop" alt="Crystal Glass Frame">
+                    </div>
+                    <h3>Crystal Platinum Frame</h3>
+                    <p>Elegant crystal glass frame with platinum finish detailing.</p>
+                    <span class="price">₹16,799</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/3945695/pexels-photo-3945695.jpeg?w=400&h=320&fit=crop" alt="Royal Heritage Frame">
+                    </div>
+                    <h3>Royal Heritage Frame</h3>
+                    <p>Ornate heritage frame with exquisite embellishments.</p>
+                    <span class="price">₹14,999</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/4553394/pexels-photo-4553394.jpeg?w=400&h=320&fit=crop" alt="Modern Minimalist Frame">
+                    </div>
+                    <h3>Modern Minimalist Frame</h3>
+                    <p>Contemporary sleek frame with minimalist aesthetic design.</p>
+                    <span class="price">₹10,899</span>
+                </div>
+                <button class="carousel-control prev" onclick="changeProductSlide(-1)">❮</button>
+                <button class="carousel-control next" onclick="changeProductSlide(1)">❯</button>
+                <div class="carousel-dots" id="product-dots">
+                    <span class="dot active" onclick="currentProductSlide(1)"></span>
+                    <span class="dot" onclick="currentProductSlide(2)"></span>
+                    <span class="dot" onclick="currentProductSlide(3)"></span>
+                    <span class="dot" onclick="currentProductSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Visit Our Store</h3>
+                    <p>SKC Road, Surampati 4 Road, Erode</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Call Us</h3>
+                    <p>+91 6382366674</p>
+                    <p>+91 9361637319</p>
+                    <p>+91 9025644426</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>info@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 GSR Graphics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab">
+        <span>✉</span>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
