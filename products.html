@@ -3,179 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Products - GSR Graphics</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Products - GSR Graphics</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="GSR LOGO.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --primary-gold: #c5a059; 
+            --primary-dark: #2c2c2c; 
+            --bg-color: #f9f7f2; 
+            --white: #ffffff; 
+            --font-heading: 'Cormorant Garamond', serif; 
+            --font-body: 'Poppins', sans-serif; 
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: var(--font-body); 
+            background: var(--bg-color); 
+            color: var(--primary-dark); 
+            animation: fadeInPage 1.2s ease-in-out;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3 { font-family: var(--font-heading); }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- BUBBLE BACKGROUND EFFECT --- */
+        .bubbles-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden; pointer-events: none;
+        }
+        .bubble {
+            position: absolute; bottom: -100px;
+            background-color: rgba(197, 160, 89, 0.1);
+            border-radius: 50%; animation: rise 15s infinite linear;
+        }
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
+        .bubble:nth-child(2) { width: 80px; height: 80px; left: 50%; animation-duration: 11s; background-color: rgba(197, 160, 89, 0.05); }
+        .bubble:nth-child(3) { width: 45px; height: 45px; left: 65%; animation-duration: 8s; animation-delay: 3s; }
+        .bubble:nth-child(4) { width: 90px; height: 90px; left: 25%; animation-duration: 10s; animation-delay: 4s; background-color: rgba(197, 160, 89, 0.05); }
+
+        @keyframes rise {
+            0% { bottom: -100px; transform: translateX(0); }
+            50% { transform: translateX(100px); }
+            100% { bottom: 100vh; transform: translateX(-200px); }
+        }
+
+        /* Header */
+        header { 
+            position: sticky; top: 0; 
+            background: rgba(249,247,242,0.95); 
+            padding: 15px 0; z-index: 100; 
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2); 
+            backdrop-filter: blur(5px);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo h1 { font-size: 1.8rem; letter-spacing: 1px; text-transform: uppercase; }
+        
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; position: relative; }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 1px;
+            bottom: -5px; left: 0; background-color: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .title { text-align: center; margin-bottom: 40px; font-size: 3rem; color: var(--primary-dark); }
+        
+        /* Filters */
+        .filters { text-align: center; margin-bottom: 40px; }
+        .filter-btn { padding: 8px 25px; border: 1px solid var(--primary-dark); background: none; cursor: pointer; margin: 0 5px; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s; letter-spacing: 1px; }
+        .filter-btn:hover, .filter-btn.active { background: var(--primary-gold); color: white; border-color: var(--primary-gold); }
+
+        /* Grid & Effects */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; }
+        
+        .product-card { 
+            background: var(--white); 
+            border: 1px solid #eee; 
+            padding: 15px; 
+            transition: all 0.4s ease; 
+            animation: fadeIn 0.8s ease backwards;
+            position: relative;
+        }
+
+        .product-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.25); 
+            border-color: rgba(197, 160, 89, 0.5);
+        }
+
+        .p-img { height: 320px; background: #f4f4f4; overflow: hidden; margin-bottom: 15px; position: relative; }
+        
+        /* Inner Frame Effect */
+        .p-img::after {
+            content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.3); pointer-events: none; z-index: 2;
+        }
+
+        .p-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; }
+        .product-card:hover img { transform: scale(1.1); }
+        
+        h3 { font-size: 1.4rem; margin-bottom: 5px; color: var(--primary-dark); }
+        p { color: #666; font-size: 0.9rem; margin-bottom: 10px; }
+        
+        /* Enquire Button */
+        .enquire-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 20px;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .enquire-btn:hover {
+            background-color: var(--primary-gold);
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+
+        /* WhatsApp Float (RIGHT SIDE) */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; /* Right Side */
+            width: 60px; height: 60px;
+            background-color: #25d366; color: #FFF;
+            border-radius: 50%; text-align: center; font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.15) rotate(10deg); background-color: #20ba5a; }
+        .whatsapp-icon { width: 35px; height: 35px; fill: white; }
+
+        footer { background: var(--primary-dark); color: #aaa; padding: 30px 0; text-align: center; margin-top: 80px; }
+        
+        /* Mobile */
+        @media(max-width:768px){ 
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; width: 100%;
+                background: var(--bg-color); 
+                flex-direction: column; text-align: center; padding: 20px; gap: 20px; 
+                border-bottom: 1px solid rgba(197, 160, 89, 0.2); box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                display: none; 
+            }
+            .nav-links.active { display: flex; animation: slideUp 0.3s ease; }
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body>
-    <!-- Luxury Loading Screen -->
-    <div id="loading-screen">
-        <div class="loading-content">
-            <div class="logo-animation">
-                <h1>GSR</h1>
-                <div class="logo-shine"></div>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <p class="loading-text">Crafting Luxury</p>
-        </div>
+    
+    <!-- Gold Particles Background -->
+    <div class="bubbles-container">
+        <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
     </div>
 
     <header>
         <nav>
-            <div class="logo">
-                <h1>GSR Graphics</h1>
-            </div>
-            <ul class="nav-links">
+            <div class="logo"><h1>GSR Graphics</h1></div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </nav>
     </header>
 
-    <section class="products-detail">
-        <div class="container">
-            <h1>Our Luxury Collection</h1>
-            <p class="subtitle">Top Quality Frames & Exquisite Gifts</p>
-
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="frames">Frames</button>
-                <button class="filter-btn" data-filter="gifts">Gifts</button>
-                <button class="filter-btn" data-filter="special">Special Edition</button>
-            </div>
-
-            <div class="products-showcase">
-                <div class="product-item" data-category="frames">
-                    <div class="product-image-detail">
-                        <img src="https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mahogany Gold Frame">
-                    </div>
-                    <div class="product-details">
-                        <h3>Mahogany Gold Frame</h3>
-                        <p class="description">Elegantly crafted mahogany frame with genuine gold plating and glass protection.</p>
-                        <ul class="features-list">
-                            <li>Premium mahogany wood</li>
-                            <li>24K gold accents</li>
-                            <li>Crystal clear glass</li>
-                            <li>Available in 3 sizes</li>
-                        </ul>
-                        <span class="price-detail">₹249.99</span>
-                        <!-- <button class="add-to-cart">Add to Cart</button> -->
-                    </div>
-                </div>
-
-                <div class="product-item" data-category="frames">
-                    <div class="product-image-detail">
-                        <img src="https://images.pexels.com/photos/313905/pexels-photo-313905.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Crystal Platinum Frame">
-                    </div>
-                    <div class="product-details">
-                        <h3>Crystal Platinum Frame</h3>
-                        <p class="description">Modern crystal frame with platinum finish and anti-reflective properties.</p>
-                        <ul class="features-list">
-                            <li>Crystal clear glass</li>
-                            <li>Platinum finish</li>
-                            <li>Anti-reflective coating</li>
-                            <li>Customizable sizing</li>
-                        </ul>
-                        <span class="price-detail">₹199.99</span>
-                        <!-- <button class="add-to-cart">Add to Cart</button> -->
-                    </div>
-                </div>
-
-                <div class="product-item" data-category="gifts">
-                    <div class="product-image-detail">
-                        <img src="https://images.pexels.com/photos/4195325/pexels-photo-4195325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Personalized Gift Box">
-                    </div>
-                    <div class="product-details">
-                        <h3>Personalized Gift Box</h3>
-                        <p class="description">Luxurious gift box with custom engraving and silk lining.</p>
-                        <ul class="features-list">
-                            <li>Premium packaging</li>
-                            <li>Custom engraving</li>
-                            <li>Silk-lined interior</li>
-                            <li>Multiple colors</li>
-                        </ul>
-                        <span class="price-detail">₹89.99</span>
-                        <!-- <button class="add-to-cart">Add to Cart</button> -->
-                    </div>
-                </div>
-
-                <div class="product-item" data-category="gifts">
-                    <div class="product-image-detail">
-                        <img src="https://images.pexels.com/photos/3587627/pexels-photo-3587627.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Artisan Hand-Blown Vase">
-                    </div>
-                    <div class="product-details">
-                        <h3>Artisan Hand-Blown Vase</h3>
-                        <p class="description">Handcrafted vase with intricate patterns and unique artisan details.</p>
-                        <ul class="features-list">
-                            <li>Hand-blown glass</li>
-                            <li>Artisan crafted</li>
-                            <li>Unique patterns</li>
-                            <li>Limited edition</li>
-                        </ul>
-                        <span class="price-detail">₹129.99</span>
-                        <!-- <button class="add-to-cart">Add to Cart</button> -->
-                    </div>
-                </div>
-
-                <div class="product-item" data-category="special">
-                    <div class="product-image-detail">
-                        <img src="https://images.pexels.com/photos/3768288/pexels-photo-3768288.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Royal Heritage Frame">
-                    </div>
-                    <div class="product-details">
-                        <h3>Royal Heritage Frame</h3>
-                        <p class="description">Limited edition frame with antique finish and royal embellishments.</p>
-                        <ul class="features-list">
-                            <li>Antique finish</li>
-                            <li>Royal design</li>
-                            <li>Limited to 100 pieces</li>
-                            <li>Certificate of authenticity</li>
-                        </ul>
-                        <span class="price-detail">₹399.99</span>
-                        <!-- <button class="add-to-cart">Add to Cart</button> -->
-                    </div>
-                </div>
-
-                <div class="product-item" data-category="special">
-                    <div class="product-image-detail">
-                        <img src="https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Diamond Luxury Frame">
-                    </div>
-                    <div class="product-details">
-                        <h3>Diamond Luxury Frame</h3>
-                        <p class="description">Ultra-premium frame with Swarovski crystals and gold leaf detailing.</p>
-                        <ul class="features-list">
-                            <li>Swarovski crystals</li>
-                            <li>Gold leaf accents</li>
-                            <li>Handcrafted details</li>
-                            <li>Lifetime warranty</li>
-                        </ul>
-                        <span class="price-detail">₹549.99</span>
-                        <!-- <button class="add-to-cart">Add to Cart</button> -->
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <h1 class="title">Our Collection</h1>
+        
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterSelection('all')">All</button>
+            <button class="filter-btn" onclick="filterSelection('frames')">Frames</button>
+            <button class="filter-btn" onclick="filterSelection('gifts')">Gifts</button>
+            <button class="filter-btn" onclick="filterSelection('toys')">Toys</button>
+            <button class="filter-btn" onclick="filterSelection('special')">Special</button>
         </div>
-    </section>
 
-    <!-- Floating Action Button -->
-    <div class="fab">
-        <span>✉</span>
+        <div class="products-grid">
+            
+            <!-- === NEW PRODUCTS (Updated Names) === -->
+
+            <!-- 1. Keychains -->
+            <div class="product-card" data-category="gifts">
+                <div class="p-img"><img src="GIFT 1.jpeg" alt="Keychains"></div>
+                <h3>Premium PVC Keychains</h3>
+                <p>Durable and cute cartoon character keychains.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 2. Flower Clock -->
+            <div class="product-card" data-category="frames">
+                <div class="p-img"><img src="Gift 2.jpeg" alt="Flower Clock"></div>
+                <h3>Personalized Flower Clock</h3>
+                <p>Wall clock with multiple slots for family photos.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 3. Spiderman Toy -->
+            <div class="product-card" data-category="toys">
+                <div class="p-img"><img src="Gift 3.jpeg" alt="Spiderman"></div>
+                <h3>Spiderman Hoodie Action Figure</h3>
+                <p>Cool collectible superhero figure in stylish hoodie.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 4. Tanjiro Toy -->
+            <div class="product-card" data-category="toys">
+                <div class="p-img"><img src="Gift 4.jpeg" alt="Tanjiro"></div>
+                <h3>Demon Slayer Tanjiro Figure</h3>
+                <p>Anime action figure for collectors and fans.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 5. Yellow Bunny -->
+            <div class="product-card" data-category="toys">
+                <div class="p-img"><img src="Gift 5.jpeg" alt="Yellow Bunny"></div>
+                <h3>Cute Rabbit Costume Doll</h3>
+                <p>Adorable smiling character in a yellow bunny suit.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 6. Panda -->
+            <div class="product-card" data-category="toys">
+                <div class="p-img"><img src="Gift 6.jpeg" alt="Panda"></div>
+                <h3>Squishy Panda Toy</h3>
+                <p>Soft, chubby panda toy for stress relief and fun.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 7. Glowing Rabbit -->
+            <div class="product-card" data-category="toys">
+                <div class="p-img"><img src="Gift 7.jpeg" alt="Glowing Rabbit"></div>
+                <h3>LED Glowing Bunny Toy</h3>
+                <p>Light-up rabbit toy, perfect for night decor.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 8. Tiger Plush -->
+            <div class="product-card" data-category="toys">
+                <div class="p-img"><img src="Gift 8.jpeg" alt="Tiger Plush"></div>
+                <h3>Realistic Tiger Plush Toy</h3>
+                <p>High-quality, soft fabric tiger stuffed toy.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 9. LED Swing Frames -->
+            <div class="product-card" data-category="gifts">
+                <div class="p-img"><img src="Gift 9.jpeg" alt="LED Swing"></div>
+                <h3>Customized LED Swing Frame</h3>
+                <p>Wooden light-up frame with "Best Wishes" theme.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 10. LED Gift Stand -->
+            <div class="product-card" data-category="gifts">
+                <div class="p-img"><img src="Gift 10.jpeg" alt="LED Stand"></div>
+                <h3>Wooden LED Birthday Stand</h3>
+                <p>Glowing gift stand for birthdays and friends.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- === CLASSIC COLLECTION === -->
+            
+            <!-- 11. Mahogany -->
+            <div class="product-card" data-category="frames">
+                <div class="p-img"><img src="Heart Image.jpeg" alt="Mahogany Frame"></div>
+                <h3>Classic Mahogany Gold Frame</h3>
+                <p>Elegantly crafted frame with premium gold plating.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 12. Calendar -->
+            <div class="product-card" data-category="gifts">
+                <div class="p-img"><img src="Calendar Frame.jpeg" alt="Calendar Gift"></div>
+                <h3>Engraved Calendar Gift Box</h3>
+                <p>Luxurious box with custom date marking.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 13. Birthday -->
+            <div class="product-card" data-category="frames">
+                <div class="p-img"><img src="Birthday.jpeg" alt="Birthday Frame"></div>
+                <h3>Platinum Birthday Frame</h3>
+                <p>Modern crystal frame with a sleek finish.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 14. Murugar -->
+            <div class="product-card" data-category="special">
+                <div class="p-img"><img src="Murugar Frame.jpeg" alt="Murugar Frame"></div>
+                <h3>Divine Murugar Art Frame</h3>
+                <p>Handcrafted divine frame with intricate details.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 15. Jallikattu -->
+            <div class="product-card" data-category="special">
+                <div class="p-img"><img src="Jallikattu.jpeg" alt="Heritage Frame"></div>
+                <h3>Royal Heritage Jallikattu Frame</h3>
+                <p>Limited edition antique finish cultural frame.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+            <!-- 16. Big Frame -->
+            <div class="product-card" data-category="special">
+                <div class="p-img"><img src="Big Frame.jpeg" alt="Luxury Frame"></div>
+                <h3>Grand Luxury Photo Frame</h3>
+                <p>Ultra-premium large format frame for big moments.</p>
+                <a href="https://wa.me/916382366674" class="enquire-btn">Enquire Now</a>
+            </div>
+
+        </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 GSR Graphics. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer><div class="container"><p>&copy; 2026 GSR Graphics. All rights reserved.</p></div></footer>
 
-    <script src="js/script.js"></script>
+    <!-- WhatsApp Floating Button (RIGHT SIDE) -->
+    <a href="https://wa.me/916382366674" class="whatsapp-float" target="_blank">
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+    <script>
+        function filterSelection(c) {
+            var x, i;
+            var btns = document.getElementsByClassName("filter-btn");
+            
+            for (i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+                if(btns[i].textContent.toLowerCase().includes(c) || (c === 'all' && btns[i].textContent === 'All')) {
+                    btns[i].classList.add("active");
+                }
+            }
+
+            x = document.getElementsByClassName("product-card");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none"; 
+                if (x[i].getAttribute('data-category').indexOf(c) > -1 || c == "") {
+                    x[i].style.display = "block";
+                    x[i].style.animation = 'none';
+                    x[i].offsetHeight; /* trigger reflow */
+                    x[i].style.animation = 'fadeIn 0.6s ease forwards';
+                }
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

@@ -3,175 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSR Graphics - Luxury Photo Frames & Gifts</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>GSR Graphics - Luxury Gifts</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="GSR LOGO.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Global Styles --- */
+        :root {
+            --primary-gold: #c5a059;
+            --primary-dark: #2c2c2c;
+            --bg-color: #f9f7f2;
+            --white: #ffffff;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Poppins', sans-serif;
+            --shadow-gold: 0 10px 30px rgba(197, 160, 89, 0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: var(--font-body); 
+            background: var(--bg-color); 
+            color: var(--primary-dark);
+            animation: fadeInPage 1.2s ease-in-out; 
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+        }
+
+        h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        img { max-width: 100%; display: block; }
+
+        /* --- Header --- */
+        header { 
+            position: sticky; top: 0; 
+            background: rgba(249,247,242,0.95); 
+            padding: 15px 0; z-index: 100; 
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2); 
+            backdrop-filter: blur(10px);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .logo h1 { 
+            font-size: 1.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--primary-dark);
+        }
+        
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { 
+            font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 1px;
+            bottom: -5px; left: 0; background-color: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        /* Mobile Menu Button */
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary-dark); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 75vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white);
+            padding: 0 20px;
+        }
+        
+        .hero-content { animation: slideUp 1.5s ease-out; }
+
+        .hero h2 { 
+            font-size: 4rem; margin-bottom: 15px; 
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+        .hero p { 
+            font-size: 1.3rem; margin-bottom: 35px; letter-spacing: 2px; font-weight: 300;
+        }
+        
+        .cta-btn { 
+            padding: 15px 40px; 
+            background: var(--primary-gold); 
+            color: white; 
+            letter-spacing: 2px; 
+            border: 1px solid var(--primary-gold); 
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+        .cta-btn:hover { 
+            background: transparent; 
+            color: var(--white); 
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* --- Collection Carousel Section --- */
+        .collection { padding: 90px 0; text-align: center; position: relative; }
+        .collection h2 { font-size: 3.5rem; margin-bottom: 50px; color: var(--primary-dark); }
+        
+        .carousel-container { position: relative; max-width: 1200px; margin: 0 auto; }
+        
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 30px;
+            padding: 40px 20px; 
+            scrollbar-width: none; 
+            -webkit-overflow-scrolling: touch; /* Smooth scroll on mobile */
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+
+        .product-card {
+            flex: 0 0 300px; /* Slightly smaller for mobile safety */
+            background: var(--white);
+            border: 1px solid #f0f0f0;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+        
+        .product-card:hover { 
+            transform: translateY(-15px) scale(1.02); 
+            box-shadow: var(--shadow-gold);
+            border-color: rgba(197, 160, 89, 0.3);
+            z-index: 10;
+        }
+        
+        .p-img { height: 320px; background: #f4f4f4; margin-bottom: 20px; overflow: hidden; position: relative; }
+        
+        .p-img::after {
+            content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.4); pointer-events: none;
+        }
+
+        .p-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
+        .product-card:hover img { transform: scale(1.1); }
+
+        .product-card h3 { font-size: 1.6rem; margin-bottom: 8px; color: var(--primary-dark); }
+        .product-card p { font-size: 0.95rem; color: #777; letter-spacing: 0.5px; }
+        
+        /* NEW: Enquire Button Style for Carousel */
+        .enquire-btn-small {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 20px;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .enquire-btn-small:hover {
+            background: var(--primary-gold);
+            color: var(--white);
+        }
+
+        /* Carousel Buttons */
+        .arrow-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; background: var(--white); border: 1px solid #ddd;
+            border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 20;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
+        }
+        .arrow-btn:hover { background: var(--primary-gold); color: white; border-color: var(--primary-gold); transform: translateY(-50%) scale(1.1); }
+        .prev { left: -10px; }
+        .next { right: -10px; }
+
+        /* --- Get In Touch Section --- */
+        .home-contact { padding: 90px 0; background: var(--white); text-align: center; border-top: 1px solid #eee; }
+        .home-contact h2 { font-size: 3rem; margin-bottom: 50px; }
+        .contact-grid { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
+        
+        .c-item { transition: 0.3s; padding: 20px; }
+        .c-item:hover { transform: translateY(-5px); }
+        
+        .c-item h3 { color: var(--primary-gold); font-size: 1.4rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
+        .c-item p { font-size: 1.1rem; color: #555; line-height: 1.8; }
+
+        /* --- Footer --- */
+        footer { background: var(--primary-dark); color: rgba(255,255,255,0.5); padding: 40px 0; text-align: center; letter-spacing: 1px; font-size: 0.9rem; }
+
+        /* --- WhatsApp Float (RIGHT SIDE) --- */
+        .whatsapp-float {
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; /* Moved to Right */
+            width: 60px; height: 60px;
+            background-color: #25d366; color: #FFF;
+            border-radius: 50%; text-align: center; font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .whatsapp-float:hover { transform: scale(1.15) rotate(10deg); background-color: #20ba5a; }
+        .whatsapp-icon { width: 35px; height: 35px; fill: white; }
+
+        /* --- Animations --- */
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- MOBILE RESPONSIVE STYLES --- */
+        @media(max-width: 768px) {
+            /* Fix Header / Nav */
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 70px; left: 0; width: 100%;
+                background: var(--bg-color); 
+                flex-direction: column; 
+                text-align: center;
+                padding: 20px; 
+                gap: 20px; 
+                border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                display: none; /* Hidden by default */
+            }
+            .nav-links.active { display: flex; animation: slideUp 0.3s ease; }
+
+            /* Fix Hero */
+            .hero h2 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .cta-btn { padding: 12px 30px; }
+
+            /* Fix Carousel */
+            .arrow-btn { display: none; } /* Hide arrows, use swipe */
+            .product-card { flex: 0 0 280px; } /* Smaller cards */
+            .collection { padding: 60px 0; }
+            .collection h2 { font-size: 2.5rem; }
+
+            /* Fix Contact */
+            .contact-grid { flex-direction: column; gap: 40px; }
+            .home-contact { padding: 60px 0; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Luxury Loading Screen -->
-    <div id="loading-screen">
-        <div class="loading-content">
-            <div class="logo-animation">
-                <h1>GSR</h1>
-                <div class="logo-shine"></div>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <p class="loading-text">Crafting Luxury</p>
-        </div>
-    </div>
 
+    <!-- Header -->
     <header>
         <nav>
-            <div class="logo">
-                <h1>GSR Graphics</h1>
-            </div>
-            <ul class="nav-links">
-                <li class="nav-logo-mobile"><h1>GSR Graphics</h1></li>
-                <li><a href="#home">Home</a></li>
+            <div class="logo"><h1>GSR Graphics</h1></div>
+            <!-- Hamburger Menu Icon for Mobile -->
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </nav>
     </header>
 
-    <section id="home" class="hero">
+    <!-- Hero -->
+    <section class="hero">
         <div class="hero-content">
-            <h2>Luxury Photo Frames & Exquisite Gifts</h2>
+            <h2>Luxury Photo Frames & Gifts</h2>
             <p>A Place Where You Buy Emotions.</p>
-            <a href="products.html" class="cta-button">Explore Collection</a>
+            <a href="products.html" class="cta-btn">Explore Collection</a>
         </div>
     </section>
 
-    <!-- Statistics Section -->
-    <section class="statistics">
+    <!-- The Collection Carousel -->
+    <section class="collection">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Satisfied Customers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Premium Clients</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Products Delivered</div>
+            <h2>The Collection</h2>
+            
+            <div class="carousel-container">
+                <button class="arrow-btn prev" onclick="scrollCarousel(-1)">❮</button>
+                <button class="arrow-btn next" onclick="scrollCarousel(1)">❯</button>
+                
+                <div class="carousel" id="productCarousel">
+                    <!-- Item 1 -->
+                    <div class="product-card">
+                        <div class="p-img">
+                            <img src="image.png" alt="Teddy">
+                        </div>
+                        <h3>Purple Teddy Bear</h3>
+                        <p>Premium handcrafted plush.</p>
+                        <!-- ADDED ENQUIRE BUTTON -->
+                        <a href="https://wa.me/916382366674" class="enquire-btn-small">Enquire Now</a>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="product-card">
+                        <div class="p-img">
+                            <img src="image4.jpeg" alt="Clock">
+                        </div>
+                        <h3>Antique Horse Clock</h3>
+                        <p>Elegant finish with gold detailing.</p>
+                        <!-- ADDED ENQUIRE BUTTON -->
+                        <a href="https://wa.me/916382366674" class="enquire-btn-small">Enquire Now</a>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="product-card">
+                        <div class="p-img">
+                            <img src="image2.jpeg" alt="Royal Toy">
+                        </div>
+                        <h3>Royal Soft Toy</h3>
+                        <p>Soft, safe, and luxurious fabric.</p>
+                        <!-- ADDED ENQUIRE BUTTON -->
+                        <a href="https://wa.me/916382366674" class="enquire-btn-small">Enquire Now</a>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="product-card">
+                        <div class="p-img">
+                            <img src="image3.jpeg" alt="Honey Teddy">
+                        </div>
+                        <h3>Honey Teddy Bear</h3>
+                        <p>The perfect hugging companion.</p>
+                        <!-- ADDED ENQUIRE BUTTON -->
+                        <a href="https://wa.me/916382366674" class="enquire-btn-small">Enquire Now</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
+    <!-- Get In Touch Section -->
+    <section class="home-contact">
         <div class="container">
-            <h2>About GSR Graphics</h2>
-            <p>At GSR Graphics, we specialize in creating timeless pieces that capture life's precious moments. Our luxury photo frames and gifts are crafted with meticulous attention to detail, using the finest materials to ensure they stand the test of time.</p>
-            <div class="features">
-                <div class="feature">
-                    <h3>Premium Quality</h3>
-                    <p>Hand-selected materials for unparalleled craftsmanship.</p>
+            <h2>Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="c-item">
+                    <h3>Visit Us</h3>
+                    <p>SKC Road, Surampati<br>Erode, India</p>
                 </div>
-                <div class="feature">
-                    <h3>Custom Designs</h3>
-                    <p>Tailored to your unique style and preferences.</p>
-                </div>
-                <div class="feature">
-                    <h3>Timeless Elegance</h3>
-                    <p>Classic designs that never go out of fashion.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="products" class="products">
-        <div class="container">
-            <h2>Our Luxury Collection</h2>
-            <div class="product-carousel" id="product-carousel-container">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.pexels.com/photos/3962669/pexels-photo-3962669.jpeg?w=400&h=320&fit=crop" alt="Luxury Wooden Frame">
-                    </div>
-                    <h3>Mahogany Gold Frame</h3>
-                    <p>Premium handcrafted wooden frame with fine gold detailing.</p>
-                    <span class="price">₹12,499</span>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.pexels.com/photos/3625517/pexels-photo-3625517.jpeg?w=400&h=320&fit=crop" alt="Crystal Glass Frame">
-                    </div>
-                    <h3>Crystal Platinum Frame</h3>
-                    <p>Elegant crystal glass frame with platinum finish detailing.</p>
-                    <span class="price">₹16,799</span>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.pexels.com/photos/3945695/pexels-photo-3945695.jpeg?w=400&h=320&fit=crop" alt="Royal Heritage Frame">
-                    </div>
-                    <h3>Royal Heritage Frame</h3>
-                    <p>Ornate heritage frame with exquisite embellishments.</p>
-                    <span class="price">₹14,999</span>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.pexels.com/photos/4553394/pexels-photo-4553394.jpeg?w=400&h=320&fit=crop" alt="Modern Minimalist Frame">
-                    </div>
-                    <h3>Modern Minimalist Frame</h3>
-                    <p>Contemporary sleek frame with minimalist aesthetic design.</p>
-                    <span class="price">₹10,899</span>
-                </div>
-                <button class="carousel-control prev" onclick="changeProductSlide(-1)">❮</button>
-                <button class="carousel-control next" onclick="changeProductSlide(1)">❯</button>
-                <div class="carousel-dots" id="product-dots">
-                    <span class="dot active" onclick="currentProductSlide(1)"></span>
-                    <span class="dot" onclick="currentProductSlide(2)"></span>
-                    <span class="dot" onclick="currentProductSlide(3)"></span>
-                    <span class="dot" onclick="currentProductSlide(4)"></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h3 class="contact-label">Visit Our Store</h3>
-                    <p>SKC Road, Surampati 4 Road, Erode</p>
-                </div>
-                <div class="contact-item">
-                    <h3 class="contact-label">Call Us</h3>
+                <div class="c-item">
+                    <h3>Contact</h3>
                     <p>+91 6382366674</p>
-                    <p>+91 9361637319</p>
-                    <p>+91 9025644426</p>
-                </div>
-                <div class="contact-item">
-                    <h3 class="contact-label">Email</h3>
                     <p>info@gmail.com</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2026 GSR Graphics. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Floating Action Button -->
-    <div class="fab">
-        <span>✉</span>
-    </div>
+    <!-- WhatsApp Floating Button (RIGHT SIDE) -->
+    <a href="https://wa.me/916382366674" class="whatsapp-float" target="_blank">
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
 
-    <script src="js/script.js"></script>
+    <!-- Script for Carousel and Mobile Menu -->
+    <script>
+        function scrollCarousel(direction) {
+            const container = document.getElementById('productCarousel');
+            const scrollAmount = 330; 
+            if (direction === 1) {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

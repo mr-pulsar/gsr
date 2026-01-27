@@ -3,149 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - GSR Graphics</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Contact - GSR Graphics</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="GSR LOGO.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --primary-gold: #c5a059; 
+            --primary-dark: #2c2c2c; 
+            --bg-color: #f9f7f2; 
+            --white: #ffffff; 
+            --font-heading: 'Cormorant Garamond', serif; 
+            --font-body: 'Poppins', sans-serif; 
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: var(--font-body); 
+            background: var(--bg-color); 
+            color: var(--primary-dark);
+            animation: fadeInPage 1.2s ease-in-out;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3 { font-family: var(--font-heading); }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- BUBBLE BACKGROUND EFFECT --- */
+        .bubbles-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden; pointer-events: none;
+        }
+        .bubble {
+            position: absolute; bottom: -100px;
+            background-color: rgba(197, 160, 89, 0.1);
+            border-radius: 50%; animation: rise 15s infinite linear;
+        }
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
+        .bubble:nth-child(2) { width: 80px; height: 80px; left: 50%; animation-duration: 11s; background-color: rgba(197, 160, 89, 0.05); }
+        .bubble:nth-child(3) { width: 45px; height: 45px; left: 65%; animation-duration: 8s; animation-delay: 3s; }
+        .bubble:nth-child(4) { width: 90px; height: 90px; left: 25%; animation-duration: 10s; animation-delay: 4s; background-color: rgba(197, 160, 89, 0.05); }
+
+        @keyframes rise {
+            0% { bottom: -100px; transform: translateX(0); }
+            50% { transform: translateX(100px); }
+            100% { bottom: 100vh; transform: translateX(-200px); }
+        }
+
+        /* Header */
+        header { 
+            position: sticky; top: 0; 
+            background: rgba(249,247,242,0.95); 
+            padding: 15px 0; z-index: 100; 
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo h1 { font-size: 1.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--primary-dark); }
+        
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; position: relative; }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 1px;
+            bottom: -5px; left: 0; background-color: var(--primary-gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* Container & Titles */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .page-title { text-align: center; font-size: 3.5rem; margin-bottom: 10px; color: var(--primary-dark); }
+        .page-subtitle { text-align: center; color: #666; margin-bottom: 60px; font-size: 1.1rem; }
+
+        /* Layout */
+        .contact-layout { 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr; /* Form slightly wider */
+            gap: 60px; 
+            align-items: start;
+        }
+        
+        /* Form Styling */
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: slideUp 1s ease-out;
+            position: relative;
+        }
+        .contact-form::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-gold);
+        }
+
+        .form-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 8px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #555; }
+        
+        input, textarea { 
+            width: 100%; padding: 15px; 
+            border: 1px solid #ddd; background: #fafafa;
+            font-family: inherit; font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        input:focus, textarea:focus {
+            outline: none; border-color: var(--primary-gold); background: var(--white);
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.1);
+        }
+
+        button { 
+            width: 100%; padding: 15px; 
+            background: var(--primary-dark); color: white; 
+            border: 1px solid var(--primary-dark); 
+            text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: 0.3s; font-weight: 500;
+        }
+        button:hover { 
+            background: var(--primary-gold); border-color: var(--primary-gold); 
+            transform: translateY(-3px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Info & Map Side */
+        .info-container { animation: slideUp 1.2s ease-out; }
+        
+        .info-item { margin-bottom: 40px; padding-left: 20px; border-left: 2px solid var(--primary-gold); }
+        .info-item h3 { color: var(--primary-gold); margin-bottom: 10px; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px; }
+        .info-item p { color: #555; line-height: 1.8; }
+
+        .map-box {
+            width: 100%; height: 300px;
+            background: #ddd;
+            border: 5px solid var(--white);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* --- WhatsApp Float (RIGHT SIDE) --- */
+        .whatsapp-float {
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; /* Right Side */
+            width: 60px; height: 60px;
+            background-color: #25d366; color: #FFF;
+            border-radius: 50%; text-align: center; font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.15) rotate(10deg); background-color: #20ba5a; }
+        .whatsapp-icon { width: 35px; height: 35px; fill: white; }
+
+        footer { background: var(--primary-dark); color: rgba(255,255,255,0.5); padding: 40px 0; text-align: center; margin-top: 80px; letter-spacing: 1px; }
+        
+        /* Animations */
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile */
+        @media(max-width:768px){ 
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; width: 100%;
+                background: var(--bg-color); 
+                flex-direction: column; text-align: center; padding: 20px; gap: 20px; 
+                border-bottom: 1px solid rgba(197, 160, 89, 0.2); box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                display: none; 
+            }
+            .nav-links.active { display: flex; animation: slideUp 0.3s ease; }
+            .contact-layout{grid-template-columns: 1fr; gap: 40px;} 
+            .page-title { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Luxury Loading Screen -->
-    <div id="loading-screen">
-        <div class="loading-content">
-            <div class="logo-animation">
-                <h1>GSR</h1>
-                <div class="logo-shine"></div>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <p class="loading-text">Crafting Luxury</p>
-        </div>
+    
+    <!-- Gold Particles Background -->
+    <div class="bubbles-container">
+        <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
     </div>
 
     <header>
         <nav>
-            <div class="logo">
-                <h1>GSR Graphics</h1>
-            </div>
-            <ul class="nav-links">
+            <div class="logo"><h1>GSR Graphics</h1></div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </nav>
     </header>
 
-    <section class="contact-page">
-        <div class="container">
-            <h1>Get In Touch</h1>
-            <p class="contact-lead">We'd love to hear from you. Let's discuss your luxury frame needs.</p>
-
-            <div class="contact-main">
-                <div class="contact-form-container">
-                    <h2>Send us a Message</h2>
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Subject *</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-
-                <div class="contact-info-container">
-                    <h2>Contact Information</h2>
-
-                    <div class="info-item">
-                        <h3>Address</h3>
-                        <p>SKC Road, Surampati 4 Road<br>Erode, Tamil Nadu - 638009<br>India</p>
+    <div class="container">
+        <h1 class="page-title">Get In Touch</h1>
+        <p class="page-subtitle">We would love to hear from you. Fill out the form or visit us.</p>
+        
+        <div class="contact-layout">
+            <!-- Left: Form -->
+            <div class="contact-form">
+                <form action="mailto:info@gmail.com" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" name="name" required placeholder="Enter your full name">
                     </div>
-
-                    <div class="info-item">
-                        <h3>Phone</h3>
-                        
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" placeholder="+91 00000 00000">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" rows="5" required placeholder="Tell us about your requirement..."></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            
+            <!-- Right: Info & Map -->
+            <div class="info-container">
+                <div class="info-item">
+                    <h3>Address</h3>
+                    <p>SKC Road, Surampati 4 Road<br>Erode, Tamil Nadu - 638009</p>
+                </div>
+                <div class="info-item">
+                    <h3>Phone & Email</h3>
                     <p>+91 6382366674</p>
                     <p>+91 9361637319</p>
-                    <p>+91 9025644426</p>
-                    </div>
-
-                    <div class="info-item">
-                        <h3>Email</h3>
-                        <p>info@gsrgraphics.com<br>support@gsrgraphics.com</p>
-                    </div>
-
-                    <div class="info-item">
-                        <h3>Business Hours</h3>
-                        <p>Monday - Sunday: 9:00 AM - 9:00 PM</p>
-                    </div>
-
-                    <div class="social-links">
-                        <h3>Follow Us</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon">f</a>
-                            <a href="#" class="social-icon">i</a>
-                            <a href="#" class="social-icon">t</a>
-                            <a href="#" class="social-icon">in</a>
-                        </div>
-                    </div>
+                    <p>info@gmail.com</p>
                 </div>
-            </div>
-
-            <div class="map-section">
-                <h2>Visit Our Showroom</h2>
-                <div class="map-placeholder">
-                    <p>📍 Google Map Embed Here</p>
+                
+                <!-- Google Map Embed -->
+                <div class="map-box">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15651.107753696982!2d77.7176!3d11.3435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f46762f9243%3A0x4642c36643df65!2sSurampatti%2C%20Erode%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
-            </div>
-
-            <div class="google-form-section">
-                <h2>Send us Your Queries</h2>
-                <p class="form-lead">Have any questions about our luxury frames and gifts? Use the form below to get in touch with our team.</p>
-                <div class="form-embed-container">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf8sQ-jL9kL2mJ5k5pL8qL9kL2mJ5k5pL8qL9kL2mJ5k5pL8qL9kL/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-                </div>
-                <p class="form-note">If you prefer not to use the form above, you can also reach us through the contact details on the left.</p>
             </div>
         </div>
-    </section>
-
-    <!-- Floating Action Button -->
-    <div class="fab">
-        <span>✉</span>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 GSR Graphics. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer><div class="container"><p>&copy; 2026 GSR Graphics. All rights reserved.</p></div></footer>
 
-    <script src="js/script.js"></script>
+    <!-- WhatsApp Floating Button (Right Side) -->
+    <a href="https://wa.me/916382366674" class="whatsapp-float" target="_blank">
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
